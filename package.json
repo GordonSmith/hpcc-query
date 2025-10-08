@@ -1,0 +1,21 @@
+{
+  "name": "hpcc-query",
+  "version": "1.0.0",
+  "description": "",
+  "license": "MIT",
+  "author": "",
+  "type": "module",
+  "main": "index.ts",
+  "scripts": {
+    "launch": "tsx src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@hpcc-js/comms": "^2",
+    "dotenv": "^17.2.3"
+  },
+  "devDependencies": {
+    "@types/node": "^24.7.0",
+    "tsx": "^4"
+  }
+}
