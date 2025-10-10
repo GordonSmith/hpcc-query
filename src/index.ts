@@ -35,13 +35,21 @@ async function fetchWorkunit(wuid: string) {
 
 async function fetchWorkunits() {
     const response = await wsWorkunits.WUQuery({});
-    return response.Workunits.ECLWorkunit;
+    return response.Workunits?.ECLWorkunit || [];
 }
 
 const wus = await fetchWorkunits();
-console.log(wus);
+console.log("Workunits:", wus);
 
-console.log("--------------------");
+if (wus.length === 0) {
+    console.log("No workunits found. The query returned an empty result.");
+    console.log("This could mean:");
+    console.log("  - No workunits exist on this cluster");
+    console.log("  - Authentication failed (check HPCC_USER_ID and HPCC_PASSWORD in .env)");
+    console.log("  - The cluster URL is incorrect (check HPCC_BASE_URL in .env)");
+} else {
+    console.log("--------------------");
 
-const wu = await fetchWorkunit(wus[0].Wuid);
-console.log(JSON.stringify(wu, null, 2));
+    const wu = await fetchWorkunit(wus[0].Wuid);
+    console.log(JSON.stringify(wu, null, 2));
+}

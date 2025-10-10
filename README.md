@@ -87,7 +87,7 @@ hpcc-query/
 
 ## Dependencies
 
-- **@hpcc-js/comms**: Library for communicating with HPCC Systems ESP services
+- **@hpcc-js/comms**: Library for communicating with HPCC Systems ESP services (v3)
 - **tsx**: TypeScript execution environment for Node.js
 - **dotenv**: Loads environment variables from .env file
 

@@ -5,7 +5,8 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch TypeScript directly",
+            "name": "tsx src/index.ts",
+            "type": "node",
             "request": "launch",
             "program": "${workspaceFolder}/src/index.ts",
             "runtimeExecutable": "npx",
@@ -15,7 +16,6 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "type": "node",
             "cwd": "${workspaceFolder}",
             "env": {
                 "NODE_OPTIONS": "--enable-source-maps"

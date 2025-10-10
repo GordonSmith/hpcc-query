@@ -6,11 +6,9 @@ This is a Node.js TypeScript application for querying HPCC Systems workunits via
 
 ## Key Dependencies & Module System
 
-### Critical: @hpcc-js/comms Version Compatibility
+### Key Dependency: @hpcc-js/comms Version & Module Resolution
 
-- **Currently using**: `@hpcc-js/comms` v2
-- **v3 has breaking changes**: Uses CommonJS internals that conflict with ES modules (dynamic require errors)
-- If encountering "Dynamic require is not supported" errors, downgrade to v2 or remove `"type": "module"` from package.json
+- **Currently using**: `@hpcc-js/comms` v3
 - The library expects top-level await for async operations
 
 ### TypeScript Execution
@@ -45,9 +43,10 @@ const wsWorkunits = new WorkunitsServiceEx({
 
 ### API Response Structure
 
-- `WUQuery()` returns: `response.Workunits.ECLWorkunit` (array of workunits)
+- `WUQuery()` returns: `response.Workunits?.ECLWorkunit` (array of workunits, may be undefined)
 - `WUInfo({ Wuid })` returns: `response.Workunit` (single workunit details)
 - All API calls are async/await - use top-level await in main entry point
+- Always check for empty results (e.g., `wus.length === 0`) before accessing array elements
 
 ## Code Style
 
@@ -63,8 +62,3 @@ const wsWorkunits = new WorkunitsServiceEx({
 2. Create service instance with connection params
 3. Define async function for the query operation
 4. Access nested response properties (responses often have wrapper objects)
-
-### Troubleshooting Module Errors
-
-- If seeing "Dynamic require" errors: Check @hpcc-js/comms version (use v2) or switch to CommonJS
-- If "top-level await not supported": Ensure `"type": "module"` is in package.json and using tsx
